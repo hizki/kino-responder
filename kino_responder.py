@@ -44,7 +44,9 @@ class KinoResponder():
 
         for entry in new_entries:    
             message = message_creation_method(entry['Field1'].strip(), entry['Field19'])
-            self.sender.send_mail(entry['Field9'], title, message, 'email-templates\\kino_logo.png')
+            # mail_to = entry['Field9']
+            mail_to = 'thehizki@gmail.com'
+            self.sender.send_mail(mail_to, title, message, 'email-templates\\kino_logo.png')
             print('Sent this message to {} {}:\n'.format(entry['Field1'], entry['Field2']))
             print(message)    
 

@@ -30,7 +30,7 @@ def replace_name_in_message(template_file, name):
         return message
 
 if __name__ == "__main__":
-    sender = GmailSmtpSender('kinotlvinfo@gmail.com', 'kinotlvinfo3')
+    sender = GmailSmtpSender('kinotlvinfo@gmail.com', 'kinotlvbepita')
     responder = KinoResponder('lists\\ignore-list.txt', sender)
     responder.send_messages(create_welcome_message, "KinoTLV Kabaret 2018", None, registration_confirmed_list_path)
     responder.send_messages(create_payment_confirmation_message, "KinoTLV Kabaret 2018 - Participation Confirmed", [paid_list_path], payment_confirmed_list_path)
