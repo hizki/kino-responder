@@ -1,13 +1,11 @@
 import re
 
 from wufoo import get_wufoo_entries
-from gmail_smtp import GmailSmtpSender
 
-class WufooResponder():
-    def __init__(self, ignore_list_path, gmail_user, gmail_pass):        
+class KinoResponder():
+    def __init__(self, ignore_list_path, sender):        
         self.ignore_list_path = ignore_list_path
-
-        self.sender = GmailSmtpSender(gmail_user, gmail_pass)
+        self.sender = sender
 
     def is_entry_needed(self, entry, include_lists, ignore_lists):
         full_name = entry['Field1'].capitalize().strip().lower() + ' ' + entry['Field2'].capitalize().strip().lower()
@@ -47,6 +45,8 @@ class WufooResponder():
         for entry in new_entries:    
             message = message_creation_method(entry['Field1'].strip(), entry['Field19'])
             self.sender.send_mail(entry['Field9'], title, message, 'email-templates\\kino_logo.png')
+            print('Send this message to {} {}:\n', entry['Field1'], entry['Field2'])
+            print(message)
 
             with open(log_file, mode='a', encoding='UTF-8') as f:
                 f.writelines(entry['Field1'].capitalize() + ' ' + entry['Field2'].capitalize() + '\n')
