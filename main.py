@@ -1,3 +1,5 @@
+#!/usr/bin/python3.5.2
+
 from kino_responder import KinoResponder
 from gmail_smtp import GmailSmtpSender
 
